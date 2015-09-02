@@ -2,3 +2,19 @@
 
 <%= link_to 'Edit', edit_owner_path(@owner) %> |
 <%= link_to 'Back', owners_path %>
+
+<div class="owner-view">
+      <%= @owner.first_name %> <%= @owner.last_name %><br>
+      <%= @owner.age %>, <%= @owner.race %><br>
+      <%= @owner.location %><br>
+</div>
+
+<% Cat.where(owner_id: @owner.id).each do |cat| %>
+<div class="owner-cats">
+<p><%= cat.name %></p>
+<p>Age: <%= cat.age %></p>
+<p>Fur Color: <%= cat.fur_color %></p>
+<p>Eye Color: <%= cat.eye_color %></p>
+<p>Food Type: <%= cat.food_type %></p>
+</div>
+<% end %>

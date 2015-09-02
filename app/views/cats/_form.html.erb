@@ -1,4 +1,11 @@
-<%= form_for(@cat) do |f| %>
+<%= form_for @cat do |f| %>
+  <p>Name</p><%= f.text_field :name %>
+  <p>Age</p><%= f.text_field :age %>
+  <p>Fur Color</p><%= f.text_field :fur_color %>
+  <p>Eye Color</p><%= f.text_field :eye_color %>
+  <p>Food Type</p><%= f.text_field :food_type %>
+  <p>Owner</p><%= f.collection_select(:owner_id, Owner.all, :id, :first_name) %>
+
   <% if @cat.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@cat.errors.count, "error") %> prohibited this cat from being saved:</h2>

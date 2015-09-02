@@ -1,4 +1,9 @@
-<%= form_for(@owner) do |f| %>
+<%= form_for @owner do |f| %>
+  <p>First Name</p><%= f.text_field :first_name %>
+  <p>Last Name</p><%= f.text_field :last_name %>
+  <p>Age</p><%= f.text_field :age %>
+  <p>Race</p><%= f.text_field :race %>
+  <p>Location</p><%= f.text_field :location %>
   <% if @owner.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@owner.errors.count, "error") %> prohibited this owner from being saved:</h2>
@@ -10,7 +15,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="actions">
     <%= f.submit %>
   </div>

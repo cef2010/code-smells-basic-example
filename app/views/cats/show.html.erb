@@ -2,3 +2,12 @@
 
 <%= link_to 'Edit', edit_cat_path(@cat) %> |
 <%= link_to 'Back', cats_path %>
+
+<div class="cat-view">
+<p><%= @cat.name %></p>
+<p>Age: <%= @cat.age %></p>
+<p>Fur Color: <%= @cat.fur_color %></p>
+<p>Eye Color: <%= @cat.eye_color %></p>
+<p>Food Type: <%= @cat.food_type %></p>
+<p>Owner: <%= Owner.find(@cat.owner_id).first_name %></p>
+</div>

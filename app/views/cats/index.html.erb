@@ -1,3 +1,4 @@
+<%= link_to 'Owners', owners_path %>
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Cats</h1>
@@ -11,11 +12,17 @@
 
   <tbody>
     <% @cats.each do |cat| %>
-      <tr>
-        <td><%= link_to 'Show', cat %></td>
-        <td><%= link_to 'Edit', edit_cat_path(cat) %></td>
-        <td><%= link_to 'Destroy', cat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="cat-view">
+    <p><%= cat.name %></p>
+    <p>Age: <%= cat.age %></p>
+    <p>Fur Color: <%= cat.fur_color %></p>
+    <p>Eye Color: <%= cat.eye_color %></p>
+    <p>Food Type: <%= cat.food_type %></p>
+    <p>Owner: <%= Owner.find(cat.owner_id).first_name %></p>
+    <%= link_to 'Show', cat %>
+    <%= link_to 'Edit', edit_cat_path(cat) %>
+    <%= link_to 'Destroy', cat, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
     <% end %>
   </tbody>
 </table>

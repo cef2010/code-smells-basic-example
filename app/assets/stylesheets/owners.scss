@@ -1,3 +1,18 @@
 // Place all the styles related to the owners controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.owner-view {
+  height: auto;
+  width: 200px;
+  border: 1px solid black;
+  margin: 15px;
+  padding-left: 10px;
+}
+
+.owner-cats {
+  height: auto;
+  width: 200px;
+  border: 1px dashed black;
+  margin: 15px;
+  padding-left: 10px;
+}

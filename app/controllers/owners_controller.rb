@@ -1,21 +1,21 @@
 class OwnersController < ApplicationController
   def index
-    @owners = Owner.all.sort_by{|onr| onr.first_name }
+    @owners = Owner.all.sort_by{|owner| owner.first_name }
   end
 
   def show
-    @onr = nil
-    @onr = Owner.find(params[:id])
-    return @onr if @onr
+    @owner = nil
+    @owner = Owner.find(params[:id])
+    return @owner if @owner
   end
 
   def update
-    @owner = Owner.find_by(params[:id])
+    @owner = Owner.find(params[:id])
     if @owner.update(owner_params)
-      # redirect_to owners_path, success: "Owner with name #{params[:owner][:first_name]} #{params[:owner][:last_name]} was updated successfully"
+      redirect_to owners_path, success: "Owner with name #{params[:owner][:first_name]} #{params[:owner][:last_name]} was updated successfully"
     else
       flash[:error] = "Owner with name #{params[:owner][:first_name]} #{params[:owner][:last_name]} was not created successfully"
-      # render 'edit'
+      render 'edit'
     end
   end
 
@@ -24,7 +24,7 @@ class OwnersController < ApplicationController
   end
 
   def create
-    @owner = Owner.new(params[:id])
+    @owner = Owner.new(owner_params)
     if @owner.save
       redirect_to owners_path, success: "Owner with name #{params[:first_name]} #{params[:last_name]} was created successfully"
     else
@@ -33,7 +33,7 @@ class OwnersController < ApplicationController
   end
 
   def edit
-    @owner = Owner.find_by(name: params[:name])
+    @owner = Owner.find(params[:id])
   end
 
   def destroy
@@ -41,13 +41,13 @@ class OwnersController < ApplicationController
     message = nil
     success_message = ""
     error_message = ''
-    @onr = Owner.find(r)
-    if @onr && @onr.persisted? && p
+    @owner = Owner.find(params[:id])
+    if @owner && @owner.persisted? && p
       #destroy all my cats
-      @onr.cats.each do |cat|
+      @owner.cats.each do |cat|
         cat.destroy
       end
-      if @onr.destroy
+      if @owner.destroy
         success_message = "owner destroyed"
         flash[:success] = success_message
         redirect_to owners_path
@@ -77,7 +77,7 @@ class OwnersController < ApplicationController
   end
 
   private
-    def op
+    def owner_params
       if params[:owner]
         params.require(:owner).permit(:first_name, :last_name, :age, :race, :location)
       end
